@@ -17,6 +17,7 @@ namespace hhnl.HomeAssistantNet.TestProject
         [Schedule(Every.Month)]
         public async Task ScheduleTest()
         {
+            await Time.Wait(TimeSpan.FromMinutes(1));
             CurrentRun.IgnoreRun();
         }
     }

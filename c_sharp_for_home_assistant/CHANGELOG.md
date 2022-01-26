@@ -2,6 +2,11 @@
 
 !! MAKE SURE TO UPDATE TO THE LATEST NUGET PACKAGES !! 
 
+## [Unreleased]
+
+### Added
+- CurrentRun.IgnoreRun()
+
 ## [0.11.3] - 2022-01-20
 
 ### Added
