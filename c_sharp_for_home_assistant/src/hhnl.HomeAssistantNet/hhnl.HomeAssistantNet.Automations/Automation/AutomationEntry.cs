@@ -54,5 +54,21 @@ namespace hhnl.HomeAssistantNet.Automations.Automation
                 _runs.PushFront(run);
             }
         }
+
+        public void RemoveRun(AutomationRunInfo run)
+        {
+            lock (this)
+            {
+                if (_runs.Front() == run)
+                {
+                    _runs.PopFront();
+                }
+                else
+                {
+                    _runs = new(RunLimit, _runs.Except(new[] { run }).ToArray());
+                }
+
+            }
+        }
     }
 }

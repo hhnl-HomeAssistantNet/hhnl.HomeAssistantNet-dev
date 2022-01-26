@@ -1,4 +1,5 @@
-﻿using hhnl.HomeAssistantNet.Automations.Triggers;
+﻿using hhnl.HomeAssistantNet.Automations.BuildingBlocks;
+using hhnl.HomeAssistantNet.Automations.Triggers;
 using hhnl.HomeAssistantNet.Shared.Automation;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace hhnl.HomeAssistantNet.TestProject
         [Schedule(Every.Month)]
         public async Task ScheduleTest()
         {
-
+            CurrentRun.IgnoreRun();
         }
     }
 }

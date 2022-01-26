@@ -51,6 +51,7 @@ namespace hhnl.HomeAssistantNet.Shared.Automation
             Cancelled,
             Error,
             WaitingInQueue,
+            Ignored,
         }
         
         public enum StartReason

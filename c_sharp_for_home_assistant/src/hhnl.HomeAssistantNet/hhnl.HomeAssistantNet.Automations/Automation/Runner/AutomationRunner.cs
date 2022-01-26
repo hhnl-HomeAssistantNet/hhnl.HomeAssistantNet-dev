@@ -84,7 +84,6 @@ namespace hhnl.HomeAssistantNet.Automations.Automation.Runner
 
                         _logger.LogDebug($"Starting automation run '{run.Id}' at: {run.Started} Reasons: '{run.Reason}' Message: '{run.ReasonMessage}'");
 
-
                         if (!Initialization.IsHomeAssistantConnected)
                         {
                             _logger.LogWarning($"No home assistant connection. Setting run to '{nameof(AutomationRunInfo.RunState.Cancelled)}'.");
@@ -95,12 +94,21 @@ namespace hhnl.HomeAssistantNet.Automations.Automation.Runner
 
                         await Entry.Info.RunAutomation(scope.ServiceProvider, run.CancellationTokenSource.Token);
 
-                        var endState = run.CancellationTokenSource.Token.IsCancellationRequested
+
+                        if (run.State == AutomationRunInfo.RunState.Ignored)
+                        {
+                            _logger.LogDebug($"Run is ignored.");
+                            Entry.RemoveRun(run);
+                        }
+                        else
+                        {
+                            var endState = run.CancellationTokenSource.Token.IsCancellationRequested
                             ? AutomationRunInfo.RunState.Cancelled
                             : AutomationRunInfo.RunState.Completed;
 
-                        _logger.LogDebug($"Setting run to '{endState}'.");
-                        run.State = endState;
+                            _logger.LogDebug($"Setting run to '{endState}'.");
+                            run.State = endState;
+                        }
                     }
                     catch (Exception e) when (e is OperationCanceledException or TaskCanceledException)
                     {
