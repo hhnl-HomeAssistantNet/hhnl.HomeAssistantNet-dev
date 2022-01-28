@@ -105,7 +105,7 @@ namespace hhnl.HomeAssistantNet.CSharpForHomeAssistant.Services
             _automationProcess = Process.Start(runStartInfo);
         }
 
-        public void StopDeployedApplication() => _automationProcess?.Close();
+        public void StopDeployedApplication() => _automationProcess?.Kill();
 
         private async Task BuildAndDeployAsyncInternal()
         {

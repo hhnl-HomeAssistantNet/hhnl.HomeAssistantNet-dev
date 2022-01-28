@@ -6,6 +6,8 @@
 
 ### Added
 - CurrentRun.IgnoreRun()
+### Fixed
+- Multiple instances of the automation hosts run simultaneously, again 
 
 ## [0.11.3] - 2022-01-20
 
